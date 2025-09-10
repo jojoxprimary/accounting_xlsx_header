@@ -1,0 +1,19 @@
+<odoo>
+    <template id="journal_report_company_information">
+        <div class="row">
+            <div class="col-12">
+                <strong>Company Name:</strong> <t t-out="env.company.name"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <strong>VAT No.:</strong> <t t-out="env.company.vat or ''"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <strong>Address:</strong> <t t-out="env.company.partner_id.contact_address or ''"/>
+            </div>
+        </div>
+    </template>
+</odoo>
