@@ -53,25 +53,7 @@ class JournalReportCustomHandler(models.AbstractModel):
             cursor_x = 0
             cursor_y = 5
 
-            # journal_filter = options.get('journal_ids', [])
-            # if journal_filter:
-            #     journals = self.env['account.journal'].browse(journal_filter)
-                
-            #     journals_by_type = {}
-            #     for journal in journals:
-            #         if journal.type not in journals_by_type:
-            #             journals_by_type[journal.type] = []
-            #         journals_by_type[journal.type].append(journal.name)
-                
-            #     journal_info_lines = []
-            #     for j_type, j_names in journals_by_type.items():
-            #         journal_info_lines.append(f"{j_type.title()}: {', '.join(j_names)}")
-                
-            #     journal_info = "\n".join(journal_info_lines)
-            # else:
-            #     journal_info = "All Journals (All Types)"
 
-            # Default sheet properties
             sheet = workbook.add_worksheet(journal_vals['name'][:31])
 
             # Hide gridlines globally
@@ -86,7 +68,7 @@ class JournalReportCustomHandler(models.AbstractModel):
              # ==== Custom header ====
             _logger.info("Writing custom header...")
             company = self.env.company
-            book_type = options.get('journal_type', '') or options.get('book_type', '') or 'General'
+            book_type = options.get('journal_type', '') or options.get('book_type', '') or options.get('name_journal_group', '')
             current_user = self.env.user
             generation_date = datetime.now().strftime("%Y-%m-%d")
             software_info = f"Odoo {self.env.ref('base.module_base').latest_version or 'Unknown Version'}"
